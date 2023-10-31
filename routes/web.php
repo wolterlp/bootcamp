@@ -57,15 +57,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
     */
+    
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
          
     Route::get('/chirps', function () {
         //return 'Hola Mundo, vista -'.'chirps';
         return view('chirps.index');
     })->name('chirps.index');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/chirps', function () {
+       $message = request('message');
+        
+    })->name('chirps.index');
+
 });
 
 require __DIR__.'/auth.php'; 
