@@ -77,7 +77,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'user_id' => auth()->id(),
         ]);
 
-        return to_route('chirps.index');
+        //session()->flash('status','Chirp created successfully!');
+
+        return to_route('chirps.index')->('status','Chirp created successfully!');
 
     });
 
