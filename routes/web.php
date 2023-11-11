@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Chirp;
+use App\Http\Controllers\ChirpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,24 +64,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::view('/dashboard', 'dashboard')->name('dashboard');
          
-    Route::get('/chirps', function () {
-        //return 'Hola Mundo, vista -'.'chirps';
-        return view('chirps.index');
-    })->name('chirps.index');
+    Route::get('/chirps', [ChirpController::class,'index'])
+        ->name('chirps.index');
 
-    Route::post('/chirps', function () {
-        //$message = request('message');
-       
-        Chirp::create([
-            'message' => request('message'),
-            'user_id' => auth()->id(),
-        ]);
-
-        //session()->flash('status','Chirp created successfully!');
-
-        return to_route('chirps.index')->('status','Chirp created successfully!');
-
-    });
+    Route::post('/chirps',[ChirpController::class,'store'])
+        ->name('chirps.store');
 
 });
 
