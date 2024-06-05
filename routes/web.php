@@ -52,6 +52,10 @@ Route::delete();
 Route::view();
 */
 
+DB::listen(function ($query) {    
+    dump($query->sql, $query->bindings);
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     /*
     Route::get('/dashboard', function () {
