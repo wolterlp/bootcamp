@@ -51,11 +51,11 @@ Route::put();
 Route::delete();
 Route::view();
 */
-
+/* imprimir consulta
 DB::listen(function ($query) {    
     dump($query->sql, $query->bindings);
 });
-
+*/
 Route::middleware(['auth', 'verified'])->group(function () {
     /*
     Route::get('/dashboard', function () {
@@ -73,6 +73,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/chirps',[ChirpController::class,'store'])
         ->name('chirps.store');
+
+    Route::get('/chirps/{chirp}/edit',[ChirpController::class, 'edit'])
+        ->name('chirps.edit');    
+    
 
 });
 

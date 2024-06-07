@@ -68,8 +68,10 @@
                                 <small class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ $chirp->created_at->format('j M Y, g:i a') }}</small>
                             </div>
                         </div>   
+                        <p class="mt-4 text-lg text-gray-900 dark:text-gray-100">{{ $chirp->message }}</p>
                     </div>  
-                    <p class="mt-4 text-lg text-gray-900 dark:text-gray-100">{{ $chirp->message }}</p>
+                   
+                    <a href="{{ route('chirps.edit', $chirp) }}"> {{ __('Edit Chirp') }} </a>
                 </div>
 
             @endforeach
